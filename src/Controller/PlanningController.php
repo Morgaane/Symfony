@@ -22,9 +22,7 @@ $rdvs[] = [
     'title' => $event->getTitle(),
     'description' => $event->getDescription(),
     'backgroundColor' => $event->getBackgroundColor(),
-    'borderColor' => $event->getBorderColor(),
     'textColor' => $event->getTextColor(),
-    'allDay' => $event->getAllDay(),
 ];
 }
 $data = json_encode($rdvs );

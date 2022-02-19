@@ -12,7 +12,6 @@
 {% endblock %}
 
 {% block body %}
-    {{ dump(data) }}
     <div id="calendar"></div>
 {% endblock %}
 
@@ -35,11 +34,12 @@
             })
             calendar.on('eventChange', (e) => {
                 let url = `/api/${e.event.id}/edit`;
+                console.log(url);
                 let donnees = {
-                    "Matière": e.event.title,
-                    "Description": e.event.extendedProps.description,
-                    "Début": e.event.start,
-                    "Fin": e.event.end,
+                    "title": e.event.title,
+                    "description": e.event.extendedProps.description,
+                    "start": e.event.start,
+                    "end": e.event.end,
                     "backgroundColor": e.event.backgroundColor,
                     "textColor": e.event.textColor,
                 };

@@ -38,19 +38,9 @@ class Calendar
     private $description;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    private $all_day;
-
-    /**
      * @ORM\Column(type="string", length=7)
      */
     private $background_color;
-
-    /**
-     * @ORM\Column(type="string", length=7)
-     */
-    private $border_color;
 
     /**
      * @ORM\Column(type="string", length=7)
@@ -110,17 +100,6 @@ class Calendar
         return $this;
     }
 
-    public function getAllDay(): ?bool
-    {
-        return $this->all_day;
-    }
-
-    public function setAllDay(bool $all_day): self
-    {
-        $this->all_day = $all_day;
-
-        return $this;
-    }
 
     public function getBackgroundColor(): ?string
     {
@@ -130,18 +109,6 @@ class Calendar
     public function setBackgroundColor(string $background_color): self
     {
         $this->background_color = $background_color;
-
-        return $this;
-    }
-
-    public function getBorderColor(): ?string
-    {
-        return $this->border_color;
-    }
-
-    public function setBorderColor(string $border_color): self
-    {
-        $this->border_color = $border_color;
 
         return $this;
     }

@@ -3,20 +3,22 @@
 {% block title %}Calendar index{% endblock %}
 
 {% block body %}
-    <h1>Calendar index</h1>
-    <a href="{{ path('calendar_new') }}">
-        <button type="button" class="btn btn-primary">Créer un nouveau créneau</button>
-    </a>
-    <ul class="nav nav-tabs">
+    <h1>Liste des évènements</h1>
+{#    <a href="{{ path('calendar_new') }}">#}
+{#        <button type="button" class="btn btn-primary">Créer un nouveau créneau</button>#}
+{#    </a>#}
+
+<ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="nav-link active" id="calendar-tab" href="#">Liste des créneaux</a>
+            <a class="nav-link active" id="calendar-tab" href="/calendar">Liste des créneaux</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="create-tab" data-toggle="tab" href="#create" role="tab" aria-controls="profile"
+{#            "{{ path('calendar_new') }}"#}
+            <a class="nav-link" id="create-tab" data-toggle="tab" href="/calendar/new" role="tab" aria-controls="profile"
                aria-selected="false">Créer un créneau</a>
         </li>
     </ul>
-    <div>
+    <div class="card">
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="calendar-tab">
             <div class="card-body">
                 <table class="table">
