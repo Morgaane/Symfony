@@ -17,8 +17,8 @@ class PlanningController extends AbstractController
 foreach ($events as $event){
 $rdvs[] = [
     'id' => $event->getId(),
-    'start' => $event->getStart()->format('Y-m-d H:i:s'),
-    'end' => $event->getEnd()->format('Y-m-d H:i:s'),
+    'start' => $event->getStart()->format('d-m-Y H:i:s'),
+    'end' => $event->getEnd()->format('d-m-Y H:i:s'),
     'title' => $event->getTitle(),
     'description' => $event->getDescription(),
     'backgroundColor' => $event->getBackgroundColor(),
