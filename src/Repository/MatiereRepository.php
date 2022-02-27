@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\Matiere;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\Mapping as ORM;
+
 
 /**
  * @method Matiere|null find($id, $lockMode = null, $lockVersion = null)

@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\CalendarRepository;
+use App\Repository\GestionRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=CalendarRepository::class)
+ * @ORM\Entity(repositoryClass=GestionRepository::class)
  */
 class Calendar
 {

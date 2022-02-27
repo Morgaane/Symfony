@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Form\MatiereForm;
 use App\Entity\Matiere;
+use App\Entity\Intervenant;
 use App\Repository\MatiereRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,6 +27,7 @@ class MatieresController extends AbstractController
     #[Route('/new', name: 'matieres_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+
         $matiere = new Matiere();
         $form = $this->createForm(MatiereForm::class, $matiere);
         $form->handleRequest($request);
@@ -79,4 +81,6 @@ class MatieresController extends AbstractController
 
         return $this->redirectToRoute('/', [], Response::HTTP_SEE_OTHER);
     }
+
+
 }

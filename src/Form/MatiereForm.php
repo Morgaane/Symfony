@@ -5,7 +5,8 @@ namespace App\Form;
 
 use App\Entity\Matiere;
 use App\Entity\Intervenant;
-use App\Controller\IntervenantController;
+use App\Controller\MatieresController;
+use App\Repository\IntervenantRepository;
 use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,14 +15,17 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
 class MatiereForm extends AbstractType
 {
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-//        $list = $this->getDoctrine()
-//            ->getRepository(Intervenant::class)->findAll();
-//        $this->logger = $list;
+//        $intervenants = $this->findId();
+//
+//        $this->logger = $intervenants;
 
         $builder
             ->add('Nom_Matiere')
