@@ -4,17 +4,13 @@
 
 {% block body %}
     <h1>Liste des évènements</h1>
-{#    <a href="{{ path('calendar_new') }}">#}
-{#        <button type="button" class="btn btn-primary">Créer un nouveau créneau</button>#}
-{#    </a>#}
-
 <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="nav-link active" id="calendar-tab" href="/calendar">Liste des créneaux</a>
+            <a class="nav-link active" id="calendar-tab" href="/gestion">Liste des créneaux</a>
         </li>
         <li class="nav-item">
 {#            "{{ path('calendar_new') }}"#}
-            <a class="nav-link" id="create-tab" data-toggle="tab" href="/calendar/new" role="tab" aria-controls="profile"
+            <a class="nav-link" id="create-tab" data-toggle="tab" href="/gestion/new" role="tab" aria-controls="profile"
                aria-selected="false">Créer un créneau</a>
         </li>
     </ul>

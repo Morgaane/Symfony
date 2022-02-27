@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Repository\CalendarRepository;
+use App\Repository\GestionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class PlanningController extends AbstractController
 {
     #[Route('/', name: 'planning')]
-    public function index(CalendarRepository $calendar): Response
+    public function index(GestionRepository $calendar): Response
     {
         $events  = $calendar ->findAll();
         $rdvs = [];

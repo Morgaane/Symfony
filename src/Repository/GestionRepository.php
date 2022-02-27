@@ -12,7 +12,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Calendar[]    findAll()
  * @method Calendar[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class CalendarRepository extends ServiceEntityRepository
+class GestionRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
