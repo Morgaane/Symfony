@@ -9,7 +9,11 @@ use \Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * @ORM\Entity(repositoryClass="GestionRepository")
+ */
 
 class ApiController extends AbstractController
 {
@@ -24,15 +28,12 @@ class ApiController extends AbstractController
     #[Route('/api/{id}/edit', name: 'api_event_edit', methods:'PUT')]
     public function majEvent(?Gestion $gestion, Request $request,ManagerRegistry $doctrine): Response
     {
-
         //On récupère les données
         $donnees =json_decode($request->getContent());
-
         if(
             isset($donnees->title) && !empty($donnees->title) &&
             isset($donnees->start) && !empty($donnees->start) &&
             isset($donnees->end) && !empty($donnees->end) &&
-            isset($donnees->description) && !empty($donnees->description) &&
             isset($donnees->backgroundColor) && !empty($donnees->backgroundColor) &&
             isset($donnees->textColor) && !empty($donnees->textColor)
         ){

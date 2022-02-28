@@ -5,17 +5,28 @@ namespace App\Controller;
 use App\Form\MatiereForm;
 use App\Entity\Matiere;
 use App\Entity\Intervenant;
+use App\Repository\IntervenantRepository;
 use App\Repository\MatiereRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\Mapping as ORM;
+use Psr\Log\LoggerInterface;
+
+/**
+ * @ORM\Entity(repositoryClass="IntervenantRepository")
+ */
+
 
 #[Route('/matieres')]
 
+
 class MatieresController extends AbstractController
 {
+
     #[Route('/', name: 'matieres_index', methods: ['GET'])]
     public function index(MatiereRepository $matiereRepository): Response
     {
@@ -27,9 +38,14 @@ class MatieresController extends AbstractController
     #[Route('/new', name: 'matieres_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $list=function(IntervenantRepository $intervenantRepository){
+            $intervenantRepository->findId();
+            };
+
 
         $matiere = new Matiere();
         $form = $this->createForm(MatiereForm::class, $matiere);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

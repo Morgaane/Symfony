@@ -19,13 +19,9 @@ class IntervenantRepository extends ServiceEntityRepository
         parent::__construct($registry, Intervenant::class);
     }
 
-
-
-
     // /**
     //  * @return Intervenant[] Returns an array of Intervenant objects
     //  */
-
     public function findId()
     {
         return $this->getEntityManager()

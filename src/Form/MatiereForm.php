@@ -5,37 +5,60 @@ namespace App\Form;
 
 use App\Entity\Matiere;
 use App\Entity\Intervenant;
-use App\Controller\MatieresController;
 use App\Repository\IntervenantRepository;
-use phpDocumentor\Reflection\Types\Integer;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Psr\Log\LoggerInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Psr\Log\LoggerInterface;
 
 class MatiereForm extends AbstractType
 {
+    private $logger;
+
+    public function __construct(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
+    }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-//        $intervenants = $this->findId();
-//
-//        $this->logger = $intervenants;
+
+
+$this->logger->info($options) ;
 
         $builder
             ->add('Nom_Matiere')
             ->add('Total_Heures')
-            ->add('ID_Intervenant',  ChoiceType::class, [
-                'choices'  => [
-                    'Maybe' => null,
-                    'Yes' => true,
-                    'No' => false,
-                ]])
+            ->add('Id_Intervenant',  EntityType::class, [
+                                'class' => Intervenant::class,
+
+                'choice_label'=>"Nom",
+            ])
+//                ,  EntityType::class, [
+//                'class' => Intervenant::class,
+////                    'choice_label' => function(Intervenant $user) {
+////                        return sprintf('(%d) %s', $user->getNom());
+////                    },
+//                'choice_label'=>'Nom',
+//                    'required' => true,
+//
+////            'constraints' => new NotBlank(['message'=> 'Veuillez choisir un intervenant, vous pourrez le modifier plus tard.'])
+////                'choice_label'=>'id',
+////                'query_builder' =>   function (IntervenantRepository $rep){
+////                    return $rep->createQueryBuilder('intervenant');
+////                },
+////                'choice_label'  =>   function ($inter){
+////                return $inter->getNom();
+////                }
+////                    'Nom'/*[
+//                   /*=> 'id',*/
+////                    'Yes' => true,
+////                    'No' => false,
+//                ]
+//        )
         ;
     }
 
