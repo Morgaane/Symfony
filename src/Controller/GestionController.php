@@ -3,21 +3,22 @@
 namespace App\Controller;
 
 use App\Entity\Calendar;
-use App\Form\CalendarType;
-use App\Repository\CalendarRepository;
+use App\Form\GestionType;
+use App\Repository\GestionRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Psr\Log\LoggerInterface;
 
-#[Route('/calendar')]
-class CalendarController extends AbstractController
+#[Route('/gestion')]
+class GestionController extends AbstractController
 {
     #[Route('/', name: 'calendar_index', methods: ['GET'])]
-    public function index(CalendarRepository $calendarRepository): Response
+    public function index(GestionRepository $calendarRepository): Response
     {
-        return $this->render('calendar/index.html.twig', [
+        return $this->render('gestion/index.html.twig', [
             'calendars' => $calendarRepository->findAll(),
         ]);
     }
@@ -26,7 +27,7 @@ class CalendarController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $calendar = new Calendar();
-        $form = $this->createForm(CalendarType::class, $calendar);
+        $form = $this->createForm(GestionType::class, $calendar);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -36,7 +37,7 @@ class CalendarController extends AbstractController
             return $this->redirectToRoute('calendar_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('calendar/new.html.twig', [
+        return $this->renderForm('gestion/new.html.twig', [
             'calendar' => $calendar,
             'form' => $form,
         ]);
@@ -45,7 +46,7 @@ class CalendarController extends AbstractController
     #[Route('/{id}', name: 'calendar_show', methods: ['GET'])]
     public function show(Calendar $calendar): Response
     {
-        return $this->render('calendar/show.html.twig', [
+        return $this->render('gestion/show.html.twig', [
             'calendar' => $calendar,
         ]);
     }
@@ -53,7 +54,7 @@ class CalendarController extends AbstractController
     #[Route('/{id}/edit', name: 'calendar_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Calendar $calendar, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(CalendarType::class, $calendar);
+        $form = $this->createForm(GestionType::class, $calendar);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -62,7 +63,7 @@ class CalendarController extends AbstractController
             return $this->redirectToRoute('calendar_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('calendar/edit.html.twig', [
+        return $this->renderForm('gestion/edit.html.twig', [
             'calendar' => $calendar,
             'form' => $form,
         ]);

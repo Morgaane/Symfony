@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle matière{% endblock %}
+
+{% block body %}
+    {% for label, flashes in app.session.flashbag.all %}
+    {% for flash in flashes %}
+        {% if ( label == 'success' ) %}
+            <div class="alert alert-success alert-dismissible fade show">
+                {{ flash }}
+            </div>
+        {% elseif ( label == 'error' ) %}
+            <div class="alert alert-danger alert-dismissible fade show">
+                {{ flash }}
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+    <h1>Créer une nouvelle matière</h1>
+    {{ include('matiere/_form.html.twig') }}
+
+    <a href="{{ path('matieres_index') }}">Retour</a>
+{% endblock %}

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Calendar{% endblock %}
+{% block title %}Créneau {{ calendar.title }}{% endblock %}
 
 {% block body %}
     <h1>Récapitulatif du créneau</h1>
@@ -27,8 +27,7 @@
     </table>
 
     <a href="{{ path('calendar_index') }}">Retour</a>
-
     <a href="{{ path('calendar_edit', {'id': calendar.id}) }}">Modifier</a>
 
-    {{ include('calendar/_delete_form.html.twig') }}
+    {{ include('gestion/_delete_form.html.twig') }}
 {% endblock %}

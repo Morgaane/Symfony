@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Calendrier{% endblock %}
+{% block title %}Planning{% endblock %}
 
 {% block stylesheets %}
     <style>
@@ -23,12 +23,18 @@
                 initialView: 'timeGridWeek',
                 locale: 'fr',
                 timeZone: 'Europe/Paris',
+                validRange: {
+                    start: '2017-09-01',
+                    end: '2018-08-31'
+                },
+                weekends: false,
+                allDaySlot:false,
                 headerToolbar: {
-                    start: 'prev,next today',
+                    start: 'prev,next prevYear',
                     center: 'title',
                     end: 'dayGridMonth,timeGridWeek'
                 },
-                events: {{ data|raw }},
+                events: {{ data | raw }},
                 editable: true,
                 eventResizableFromStart: true,
             })

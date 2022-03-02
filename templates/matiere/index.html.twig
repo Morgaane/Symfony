@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des matières{% endblock %}
+
+{% block body %}
+    <h1>Liste des matières</h1>
+
+<ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" id="matiere-tab" href="/matieres">Liste des matières</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="create-tab" data-toggle="tab" href="/matieres/new" role="tab" aria-controls="profile"
+               aria-selected="false">Créer une matière</a>
+        </li>
+    </ul>
+    <div class="card">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="matiere-tab">
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Matière</th>
+                        <th>Intervenant</th>
+                        <th>Heures totales</th>
+                        <th>Heures restantes</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {% for matiere in matieres %}
+                        <tr>
+                            <td>{{ matiere.NomMatiere }}</td>
+                            <td>{{ matiere.NomIntervenant }}</td>
+                            <td>{{ matiere.TotalHeures ? matiere.TotalHeures : 0 }}</td>
+                            <td>{{ matiere.HeuresRestantes ? matiere.HeuresRestantes : matiere.TotalHeures }}</td>
+                            <td>
+                                <a href="{{ path('matieres_show', {'id': matiere.id}) }}">
+                                    <button type="button" class="btn btn-primary">Récapitulatif</button>
+                                </a>
+                                <a href="{{ path('matieres_edit', {'id': matiere.id}) }}">
+                                    <button type="button" class="btn btn-primary">Editer</button>
+                                </a>
+
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="10">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <div class="tab-pane fade show active" id="new" role="tabpanel" aria-labelledby="create-tab">
+
+        </div>
+    </div>
+{% endblock %}
