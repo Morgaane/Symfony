@@ -22,14 +22,15 @@
             let calendar = new FullCalendar.Calendar(calendarElt, {
                 initialView: 'timeGridWeek',
                 locale: 'fr',
-                timeZone: 'Europe/Paris',
+                // timeZone: 'Europe/Paris',
                 validRange: {
                     start: '2017-09-01',
                     end: '2018-08-31'
                 },
                 weekends: false,
+                allDaySlot:false,
                 headerToolbar: {
-                    start: 'prev,next today',
+                    start: 'prev,next prevYear',
                     center: 'title',
                     end: 'dayGridMonth,timeGridWeek'
                 },

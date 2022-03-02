@@ -23,12 +23,12 @@ class Calendar
     private $title;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime",unique=true)
      */
     private $start;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime",unique=true)
      */
     private $end;
 

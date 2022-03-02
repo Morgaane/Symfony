@@ -9,15 +9,19 @@
         <tbody>
             <tr>
                 <th>Matière</th>
-                <td>{{ matiere.matiere }}</td>
+                <td>{{ matiere.NomMatiere }}</td>
             </tr>
             <tr>
                 <th>Intervenant</th>
-                <td>{{ matiere.intervenant}}</td>
+                <td>{{ matiere.NomIntervenant}}</td>
+            </tr>
+            <tr>
+                <th>Total heures</th>
+                <td>{{ matiere.TotalHeures ? matiere.TotalHeures: 0 }}</td>
             </tr>
             <tr>
                 <th>Heures restantes</th>
-                <td>{{ matiere.heures_restantes ? matiere.heures_restantes: 0 }}</td>
+                <td>{{ matiere.HeuresRestantes ? matiere.HeuresRestantes: matiere.TotalHeures }}</td>
             </tr>
         </tbody>
     </table>

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Matieres index{% endblock %}
+{% block title %}Gestion des matières{% endblock %}
 
 {% block body %}
     <h1>Liste des matières</h1>
@@ -27,11 +27,13 @@
                     </tr>
                     </thead>
                     <tbody>
+
                     {% for matiere in matieres %}
                         <tr>
-                            <td>{{ matiere.matiere }}</td>
-                            <td>{{ matiere.intervenant }}</td>
-                            <td>{{ matiere.heures_restantes ? matiere.heures_restantes : 0 }}</td>
+                            <td>{{ matiere.NomMatiere }}</td>
+                            <td>{{ matiere.NomIntervenant }}</td>
+                            <td>{{ matiere.TotalHeures ? matiere.TotalHeures : 0 }}</td>
+                            <td>{{ matiere.HeuresRestantes ? matiere.HeuresRestantes : matiere.TotalHeures }}</td>
                             <td>
                                 <a href="{{ path('matieres_show', {'id': matiere.id}) }}">
                                     <button type="button" class="btn btn-primary">Récapitulatif</button>

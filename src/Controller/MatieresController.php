@@ -20,7 +20,9 @@ use Psr\Log\LoggerInterface;
  * @ORM\Entity(repositoryClass="IntervenantRepository")
  */
 
-
+/**
+ * @method Matiere[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ */
 #[Route('/matieres')]
 
 
@@ -36,29 +38,56 @@ class MatieresController extends AbstractController
     }
 
     #[Route('/new', name: 'matieres_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager,MatiereRepository $matiereRepository): Response
     {
-        $list=function(IntervenantRepository $intervenantRepository){
-            $intervenantRepository->findId();
-            };
-
 
         $matiere = new Matiere();
-        $form = $this->createForm(MatiereForm::class, $matiere);
 
+        $form = $this->createForm(MatiereForm::class, $matiere);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($matiere);
-            $entityManager->flush();
+        $allMatiere=$matiereRepository->findAll();
 
-            return $this->redirectToRoute('matieres_index', [], Response::HTTP_SEE_OTHER);
+
+        $ifExists=false;
+//        foreach( $allMatiere as $item) {
+            foreach ($matiere as $mat){
+//                $po=$item->getNomMatiere();
+//                if($po===$mat){
+//                    $ifExists=true;
+//
+//                }
+                var_dump($mat);
+
+            }
+//       }
+        if($ifExists){
+            var_dump($ifExists);
+        }
+
+        $matiere->setHeuresRestantes(0);
+        if ($form->isSubmitted() && $form->isValid()) {
+            if($ifExists==false){
+                $entityManager->persist($matiere);
+                $entityManager->flush();
+
+                $this->addFlash('success','La matière a été ajouté.');
+
+            }
+            else{
+                $this->addFlash('error','La matière existe déjà.');
+
+            }
+            return $this->redirectToRoute('matieres_new', [], Response::HTTP_SEE_OTHER);
+
         }
 
         return $this->renderForm('matiere/new.html.twig', [
             'matiere' => $matiere,
             'form' => $form,
         ]);
+
+
     }
 
     #[Route('/{id}', name: 'matieres_show', methods: ['GET'])]

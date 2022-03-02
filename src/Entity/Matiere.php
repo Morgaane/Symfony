@@ -18,75 +18,76 @@ class Matiere
     private $id;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=0)
-     */
-    private $ID_Intervenant;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Nom_Matiere;
+    private $NomIntervenant;
+
+    /**
+     * @ORM\Column(type="string", length=255, unique=true)
+     */
+    private $NomMatiere;
 
     /**
      * @ORM\Column(type="decimal", precision=10, scale=2)
      */
-    private $Total_Heures;
+    private $TotalHeures;
 
     /**
      * @ORM\Column(type="decimal", precision=10, scale=2)
      */
-    private $Heures_Restantes;
+    private ?int $HeuresRestantes;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getIDIntervenant(): ?string
+    public function getNomIntervenant(): ?string
     {
-        return $this->ID_Intervenant;
+        return $this->NomIntervenant;
     }
 
-    public function setIDIntervenant(string $ID_Intervenant): self
+    public function setNomIntervenant(string $NomIntervenant): self
     {
-        $this->ID_Intervenant = $ID_Intervenant;
+        $this->NomIntervenant = $NomIntervenant;
 
         return $this;
     }
 
     public function getNomMatiere(): ?string
     {
-        return $this->Nom_Matiere;
+        return $this->NomMatiere;
     }
 
-    public function setNomMatiere(string $Nom_Matiere): self
+    public function setNomMatiere(string $NomMatiere): self
     {
-        $this->Nom_Matiere = $Nom_Matiere;
+        $this->NomMatiere = $NomMatiere;
 
         return $this;
     }
 
     public function getTotalHeures(): ?string
     {
-        return $this->Total_Heures;
+        return $this->TotalHeures;
     }
 
-    public function setTotalHeures(string $Total_Heures): self
+    public function setTotalHeures(string $TotalHeures): self
     {
-        $this->Total_Heures = $Total_Heures;
+        $this->TotalHeures = $TotalHeures;
 
         return $this;
     }
 
     public function getHeuresRestantes(): ?string
     {
-        return $this->Heures_Restantes;
+        return $this->HeuresRestantes;
     }
 
-    public function setHeuresRestantes(string $Heures_Restantes): self
+    public function setHeuresRestantes(string $HeuresRestantes): self
     {
-        $this->Heures_Restantes = $Heures_Restantes;
+        $this->HeuresRestantes = $HeuresRestantes;
 
         return $this;
     }
+
 }

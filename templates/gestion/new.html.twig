@@ -4,7 +4,17 @@
 
 {% block body %}
     <h1>Créer un nouveau créneau</h1>
+    {% for message in app.flashes('info') %}
+    <div class="alert alert-warning">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+    {% endfor %}
     {{ include('gestion/_form.html.twig') }}
 
-    <a href="{{ path('calendar_index') }}">Retour</a>
+    <a href="{{ path('matieres_index') }}">Retour</a>
 {% endblock %}

@@ -28,9 +28,9 @@ class MatiereApiController extends AbstractController
         $donnees =json_decode($request->getContent());
 
         if(
-            isset($donnees->Nom_Matiere) && !empty($donnees->Nom_Matiere) &&
-            isset($donnees->ID_Intervenant) && !empty($donnees->ID_Intervenant) &&
-            isset($donnees->Total_Heure) && !empty($donnees->Total_Heure)
+            isset($donnees->NomMatiere) && !empty($donnees->NomMatiere) &&
+            isset($donnees->NomIntervenant) && !empty($donnees->NomIntervenant) &&
+            isset($donnees->TotalHeure) && !empty($donnees->TotalHeure)
         ){
 
             //les données sont complètes
@@ -45,10 +45,10 @@ class MatiereApiController extends AbstractController
                 $code =201;
 
             }
-            $matiere->setNomMatiere($donnees->Nom_Matiere);
-            $matiere->setIDIntervenant($donnees->setIDIntervenant);
-            $matiere->setTotalHeures($donnees->Total_Heure);
-            $matiere->setHeuresRestantes($donnees->Total_Heure);
+            $matiere->setNomMatiere($donnees->NomMatiere);
+            $matiere->setNomIntervenant($donnees->setNomIntervenant);
+            $matiere->setTotalHeures($donnees->TotalHeure);
+            $matiere->setHeuresRestantes($donnees->TotalHeure);
 
             $em = $doctrine->getManager();
             $em->persist($matiere);
