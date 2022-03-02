@@ -34,7 +34,8 @@ class GestionController extends AbstractController
             $entityManager->persist($calendar);
             $entityManager->flush();
 
-            return $this->redirectToRoute('calendar_index', [], Response::HTTP_SEE_OTHER);
+            $this->addFlash('success',"L'évènement a été ajouté.");
+            return $this->redirectToRoute('calendar_new', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('gestion/new.html.twig', [

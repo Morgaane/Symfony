@@ -46,24 +46,24 @@ class MatieresController extends AbstractController
         $form = $this->createForm(MatiereForm::class, $matiere);
         $form->handleRequest($request);
 
-        $allMatiere=$matiereRepository->findAll();
+//        $allMatiere=$matiereRepository->findAll();
 
 
         $ifExists=false;
-//        foreach( $allMatiere as $item) {
-            foreach ($matiere as $mat){
-//                $po=$item->getNomMatiere();
-//                if($po===$mat){
-//                    $ifExists=true;
+////        foreach( $allMatiere as $item) {
+//            foreach ($matiere as $mat){
+////                $po=$item->getNomMatiere();
+////                if($po===$mat){
+////                    $ifExists=true;
+////
+////                }
+//                var_dump($mat);
 //
-//                }
-                var_dump($mat);
-
-            }
-//       }
-        if($ifExists){
-            var_dump($ifExists);
-        }
+//            }
+////       }
+//        if($ifExists){
+//            var_dump($ifExists);
+//        }
 
         $matiere->setHeuresRestantes(0);
         if ($form->isSubmitted() && $form->isValid()) {
