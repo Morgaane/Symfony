@@ -4,15 +4,18 @@
 
 {% block body %}
     <h1>Créer un nouveau créneau</h1>
-    {% for message in app.flashes('info') %}
-    <div class="alert alert-warning">
-        {{ message }}
-    </div>
-    {% endfor %}
-    {% for message in app.flashes('success') %}
-    <div class="alert alert-success">
-        {{ message }}
-    </div>
+    {% for label, flashes in app.session.flashbag.all %}
+        {% for flash in flashes %}
+            {% if ( label == 'success' ) %}
+                <div class="alert alert-success alert-dismissible fade show">
+                    {{ flash }}
+                </div>
+            {% elseif ( label == 'error' ) %}
+                <div class="alert alert-danger alert-dismissible fade show">
+                    {{ flash }}
+                </div>
+            {% endif %}
+        {% endfor %}
     {% endfor %}
     {{ include('gestion/_form.html.twig') }}
 
