@@ -29,17 +29,27 @@
                     end: 'dayGridMonth,timeGridWeek'
                 },
                 events: {{ data|raw }},
-                editable: true,
                 eventResizableFromStart: true,
             })
             calendar.on('eventChange', (e) => {
                 let url = `/api/${e.event.id}/edit`;
                 console.log(url);
+                let $date = "";
+                if(e.event.position_journee=='3'){
+                    e.event.start= strtotime(e.event.start,"+9 hours");
+                    $date= strtotime(e.event.start,"+3 hours");
+
+                }
+                else{
+                    e.event.start= strtotime(e.event.start,"+13 hours");
+                    $date= strtotime(e.event.start,"+4 hours");
+
+                }
                 let donnees = {
                     "title": e.event.title,
                     "description": e.event.extendedProps.description,
                     "start": e.event.start,
-                    "end": e.event.end,
+                    "end": $date,
                     "backgroundColor": e.event.backgroundColor,
                     "textColor": e.event.textColor,
                 };

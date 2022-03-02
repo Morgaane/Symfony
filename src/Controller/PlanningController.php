@@ -14,18 +14,18 @@ class PlanningController extends AbstractController
     {
         $events  = $calendar ->findAll();
         $rdvs = [];
-foreach ($events as $event){
-$rdvs[] = [
-    'id' => $event->getId(),
-    'start' => $event->getStart()->format('Y-m-d H:i:s'),
-    'end' => $event->getEnd()->format('Y-m-d H:i:s'),
-    'title' => $event->getTitle(),
-    'description' => $event->getDescription(),
-    'backgroundColor' => $event->getBackgroundColor(),
-    'textColor' => $event->getTextColor(),
-];
-}
-$data = json_encode($rdvs );
-return $this->render('planning/index.html.twig', compact('data'));
-    }
+        foreach ($events as $event){
+            $rdvs[] = [
+                'id' => $event->getId(),
+                'day' => $event->getDay()->format('Y-m-d'),
+                'position_journee' => $event->getPositionJournee(),
+                'title' => $event->getTitle(),
+                'description' => $event->getDescription(),
+                'backgroundColor' => $event->getBackgroundColor(),
+                'textColor' => $event->getTextColor(),
+            ];
+        }
+        $data = json_encode($rdvs );
+        return $this->render('planning/index.html.twig', compact('data'));
+            }
 }

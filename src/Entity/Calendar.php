@@ -25,12 +25,16 @@ class Calendar
     /**
      * @ORM\Column(type="datetime")
      */
-    private $start;
-
-    /**
+    private $day;
+ /**
      * @ORM\Column(type="datetime")
      */
     private $end;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $position_journee;
 
     /**
      * @ORM\Column(type="text")
@@ -64,26 +68,36 @@ class Calendar
         return $this;
     }
 
-    public function getStart(): ?\DateTimeInterface
+    public function getDay(): ?\DateTimeInterface
     {
-        return $this->start;
+        return $this->day;
     }
 
-    public function setStart(\DateTimeInterface $start): self
+    public function setDay(\DateTimeInterface $day): self
     {
-        $this->start = $start;
+        $this->day = $day;
 
         return $this;
-    }
-
-    public function getEnd(): ?\DateTimeInterface
+    } public function getEnd(): ?\DateTimeInterface
     {
         return $this->end;
     }
 
-    public function setEnd(\DateTimeInterface $end): self
+    public function setEnd($end): self
     {
         $this->end = $end;
+
+        return $this;
+    }
+
+    public function getPositionJournee(): ?string
+    {
+        return $this->position_journee;
+    }
+
+    public function setPositionJournee(string $position_journee): self
+    {
+        $this->position_journee = $position_journee;
 
         return $this;
     }
