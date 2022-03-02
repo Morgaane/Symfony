@@ -16,23 +16,14 @@ use Psr\Log\LoggerInterface;
 
 class MatiereForm extends AbstractType
 {
-    private $logger;
-
-    public function __construct(LoggerInterface $logger)
-    {
-        $this->logger = $logger;
-    }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-
-
-$this->logger->info($options) ;
-
         $builder
             ->add('Nom_Matiere')
             ->add('Total_Heures')
-            ->add('Id_Intervenant',  EntityType::class, [
+            ->add('Id_Intervenant',
+                EntityType::class, [
                                 'class' => Intervenant::class,
 
                 'choice_label'=>"Nom",

@@ -29,7 +29,6 @@ class GestionController extends AbstractController
         $calendar = new Calendar();
         $form = $this->createForm(GestionType::class, $calendar);
         $form->handleRequest($request);
-        $this->logger = $form;
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($calendar);
