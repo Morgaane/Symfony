@@ -20,6 +20,18 @@ class MatiereForm extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        if($options){
+            $builder
+                ->add('NomMatiere')
+                ->add('TotalHeures', IntegerType::class);
+//                ->add('NomIntervenant',
+//                    EntityType::class, [
+//                        'class' => Intervenant::class,
+//                        'choice_label'=>"Nom",
+//                    ]);
+
+        }
+        else{
             $builder
                 ->add('NomMatiere')
                 ->add('TotalHeures', IntegerType::class)
@@ -28,6 +40,8 @@ class MatiereForm extends AbstractType
                         'class' => Intervenant::class,
                         'choice_label'=>"Nom",
                     ]);
+        }
+
 
     }
 
