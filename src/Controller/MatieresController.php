@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\MatiereForm;
+use App\Form\MatiereEditForm;
 use App\Entity\Matiere;
 use App\Entity\Intervenant;
 use App\Repository\IntervenantRepository;
@@ -101,7 +102,7 @@ class MatieresController extends AbstractController
     #[Route('/{id}/edit', name: 'matieres_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Matiere $matiere, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(MatiereForm::class, $matiere);
+        $form = $this->createForm(MatiereEditForm::class, $matiere);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

@@ -15,21 +15,15 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType ;
 
-class MatiereForm extends AbstractType
+class MatiereEditForm extends AbstractType
 {
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-
-            $builder
-                ->add('NomMatiere')
-                ->add('TotalHeures', IntegerType::class)
-                ->add('NomIntervenant',
-                    EntityType::class, [
-                        'class' => Intervenant::class,
-                        'choice_label'=>"Nom",
-                    ]);
-        }
+        $builder
+            ->add('NomMatiere')
+            ->add('TotalHeures', IntegerType::class);
+    }
 
 
     public function configureOptions(OptionsResolver $resolver): void
