@@ -19,7 +19,8 @@ class GestionType extends AbstractType
         $builder
             ->add('title', EntityType::class, [
                 'class'=> Matiere::class,
-                'choice_label'=>'NomMatiere'
+                'choice_label'=>'NomMatiere',
+                'placeholder'=> 'Choix de la matière'
             ])
             ->add('start', DateTimeType::class, array( 'widget' => 'single_text'))
             ->add('end', DateTimeType::class,  array( 'widget' => 'single_text'))

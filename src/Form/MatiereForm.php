@@ -28,6 +28,7 @@ class MatiereForm extends AbstractType
                     EntityType::class, [
                         'class' => Intervenant::class,
                         'choice_label'=>"Nom",
+                        'placeholder'=>"Choix de l'intervenant"
                     ]);
         }
 

@@ -18,6 +18,7 @@ use DateTime;
 #[Route('/gestion')]
 class GestionController extends AbstractController
 {
+
     #[Route('/', name: 'calendar_index', methods: ['GET'])]
     public function index(GestionRepository $calendarRepository): Response
     {
@@ -29,16 +30,20 @@ class GestionController extends AbstractController
     #[Route('/new', name: 'calendar_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $feries=['01/11/2017 00:00:00',
-            '25/12/2017 00:00:00',
-            '01/01/2018 00:00:00',
-            '02/04/2018 00:00:00',
-            '08/05/2018 00:00:00',
-            '10/05/2018 00:00:00',
-            '21/05/2018 00:00:00',
-            '14/07/2018 00:00:00',
-            '15/08/2018 00:00:00',
-        ];
+//        $mysql =mysqli_connect("127.0.0.1:3306", "root", "");
+//        mysqli_select_db($mysql,"calendear");
+//
+//
+//        $feries=['01/11/2017 00:00:00',
+//            '25/12/2017 00:00:00',
+//            '01/01/2018 00:00:00',
+//            '02/04/2018 00:00:00',
+//            '08/05/2018 00:00:00',
+//            '10/05/2018 00:00:00',
+//            '21/05/2018 00:00:00',
+//            '14/07/2018 00:00:00',
+//            '15/08/2018 00:00:00',
+//        ];
         $calendar = new Calendar();
         $form = $this->createForm(GestionType::class, $calendar);
         $form->handleRequest($request);
@@ -46,7 +51,12 @@ class GestionController extends AbstractController
 
 
         if ($form->isSubmitted() && $form->isValid()) {
-//            $donnees =json_decode($request->getContent());
+
+//            $donnees =$form['start']->getData();
+////            $zedate = $donnees->format('d-m-Y h:m:s');
+////
+////            $sql="SELECT COUNT(*) FROM calendear WHERE start=".$zedate;
+//            var_dump(date_format($donnees,"d-m-Y"));
 //            var_dump($donnees);
 //            if($donnees){
 //                foreach ($feries as $ferie){
@@ -61,7 +71,7 @@ class GestionController extends AbstractController
 //            }
 
             $entityManager->persist($calendar);
-            $entityManager->flush();
+//            $entityManager->flush();
 
             $this->addFlash('success',"L'évènement a été ajouté.");
             return $this->redirectToRoute('calendar_new', [], Response::HTTP_SEE_OTHER);

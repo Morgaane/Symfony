@@ -125,7 +125,7 @@ class MatieresController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('/', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('matieres_index', [], Response::HTTP_SEE_OTHER);
     }
 
 
