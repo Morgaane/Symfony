@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Planning{% endblock %}
+{% block title %}Calendrier{% endblock %}
 
 {% block stylesheets %}
     <style>
-        #calendar {
+        #calendar{
             width: 80%;
             margin: auto;
         }
@@ -15,39 +15,32 @@
     <div id="calendar"></div>
 {% endblock %}
 
-{% block  javascripts %}
+{%  block  javascripts %}
     <script>
-        window.onload = () => {
+        window.onload = () =>{
             let calendarElt = document.querySelector("#calendar");
             let calendar = new FullCalendar.Calendar(calendarElt, {
-                initialView: 'timeGridWeek',
-                locale: 'fr',
-                timeZone: 'Europe/Paris',
-                validRange: {
-                    start: '2017-09-01',
-                    end: '2018-08-31'
-                },
-                weekends: false,
-                allDaySlot:false,
+                initialView : 'timeGridWeek',
+                locale:'fr',
+                timeZone:'Europe/Paris',
                 headerToolbar: {
-                    start: 'prev,next',
-                    center: 'title',
-                    end: 'prevYear,dayGridMonth,timeGridWeek'
+                    start: 'prev,next today',
+                    center : 'title',
+                    end: 'dayGridMonth,timeGridWeek'
                 },
-                events: {{ data | raw }},
-                editable: true,
-                eventResizableFromStart: true,
+                events: {{  data|raw }},
+                editable:true,
+                eventResizableFromStart : true,
             })
-            calendar.on('eventChange', (e) => {
+            calendar.on('eventChange', (e)=> {
                 let url = `/api/${e.event.id}/edit`;
-                console.log(url);
                 let donnees = {
-                    "title": e.event.title,
-                    "description": e.event.extendedProps.description,
-                    "start": e.event.start,
-                    "end": e.event.end,
-                    "backgroundColor": e.event.backgroundColor,
-                    "textColor": e.event.textColor,
+                    "title":e.event.title,
+                    "description":e.event.extendedProps.description,
+                    "start":e.event.start,
+                    "end":e.event.end,
+                    "backgroundColor":e.event.backgroundColor,
+                    "textColor":e.event.textColor,
                 };
                 let xhr = new XMLHttpRequest;
                 xhr.open("PUT", url);

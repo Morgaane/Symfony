@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Calendar;
 use App\Form\GestionType;
+use App\Form\GestionEditType;
 use App\Repository\GestionRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -32,7 +33,7 @@ class GestionController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($calendar);
-            $entityManager->flush();
+//            $entityManager->flush();
 
             $this->addFlash('success',"L'évènement a été ajouté.");
             return $this->redirectToRoute('calendar_new', [], Response::HTTP_SEE_OTHER);
@@ -55,7 +56,7 @@ class GestionController extends AbstractController
     #[Route('/{id}/edit', name: 'calendar_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Calendar $calendar, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(GestionType::class, $calendar);
+        $form = $this->createForm(GestionEditType::class, $calendar);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

@@ -12,15 +12,11 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class GestionType extends AbstractType
+class GestionEditType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title', EntityType::class, [
-                'class'=> Matiere::class,
-                'choice_label'=>'NomMatiere'
-            ])
             ->add('start', DateTimeType::class, array( 'widget' => 'single_text'))
             ->add('end', DateTimeType::class,  array( 'widget' => 'single_text'))
             ->add('description')
