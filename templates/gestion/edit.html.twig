@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edition {{ calendar.title }} du {{ calendar.start|date('d-m-Y') }}{% endblock %}
+{% block title %}Edition {{ calendar.NomMatiere }} du {{ calendar.Debut|date('d-m-Y') }}{% endblock %}
 
 {% block body %}
-    <h1>Edition du créneau {{ calendar.title }} du {{ calendar.start|date('d-m-Y') }}</h1>
+    <h1>Edition du créneau {{ calendar.NomMatiere }} du {{ calendar.Debut|date('d-m-Y') }}</h1>
 
     {{ include('gestion/_form.html.twig', {'button_label': 'Update'}) }}
 

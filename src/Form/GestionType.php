@@ -17,16 +17,16 @@ class GestionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title', EntityType::class, [
+            ->add('NomMatiere', EntityType::class, [
                 'class'=> Matiere::class,
                 'choice_label'=>'NomMatiere',
                 'placeholder'=> 'Choix de la matière'
             ])
-            ->add('start', DateTimeType::class, array( 'widget' => 'single_text'))
-            ->add('end', DateTimeType::class,  array( 'widget' => 'single_text'))
-            ->add('description')
-            ->add('background_color', ColorType::class, )
-            ->add('text_color', ColorType::class, )
+            ->add('Debut', DateTimeType::class, array( 'widget' => 'single_text'))
+            ->add('Fin', DateTimeType::class,  array( 'widget' => 'single_text'))
+            ->add('Description')
+            ->add('CouleurDeFond', ColorType::class, )
+            ->add('CouleurDuTexte', ColorType::class, )
         ;
     }
 

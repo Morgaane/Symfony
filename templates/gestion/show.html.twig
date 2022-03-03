@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Créneau {{ calendar.title }}{% endblock %}
+{% block title %}Créneau {{ calendar.NomMatiere }}{% endblock %}
 
 {% block body %}
     <h1>Récapitulatif du créneau</h1>
@@ -9,19 +9,19 @@
         <tbody>
             <tr>
                 <th>Matière</th>
-                <td>{{ calendar.title }}</td>
+                <td>{{ calendar.NomMatiere }}</td>
             </tr>
             <tr>
                 <th>Début</th>
-                <td>{{ calendar.start ? calendar.start|date('d-m-Y H:i:s') : '' }}</td>
+                <td>{{ calendar.Debut ? calendar.Debut|date('d-m-Y H:i:s') : '' }}</td>
             </tr>
             <tr>
                 <th>Fin</th>
-                <td>{{ calendar.end ? calendar.end|date('d-m-Y H:i:s') : '' }}</td>
+                <td>{{ calendar.Fin ? calendar.Fin|date('d-m-Y H:i:s') : '' }}</td>
             </tr>
             <tr>
                 <th>Description</th>
-                <td>{{ calendar.description }}</td>
+                <td>{{ calendar.Description }}</td>
             </tr>
         </tbody>
     </table>
@@ -29,5 +29,4 @@
     <a href="{{ path('calendar_index') }}">Retour</a>
     <a href="{{ path('calendar_edit', {'id': calendar.id}) }}">Modifier</a>
 
-    {{ include('gestion/_delete_form.html.twig') }}
 {% endblock %}

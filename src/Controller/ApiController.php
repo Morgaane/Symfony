@@ -28,12 +28,11 @@ class ApiController extends AbstractController
         $donnees =json_decode($request->getContent());
 
         if(
-            isset($donnets->title) && !empty($donnee->title) &&
-            isset($donnets->start) && !empty($donnee->start) &&
-            isset($donnets->description) && !empty($donnee->description) &&
-            isset($donnets->backgroundColor) && !empty($donnee->backgroundColor) &&
-            isset($donnets->borderColor) && !empty($donnee->borderColor) &&
-            isset($donnets->textColor) && !empty($donnee->textColor)
+            isset($donnets->NomMatiere) && !empty($donnee->NomMatiere) &&
+            isset($donnets->Debut) && !empty($donnee->Debut) &&
+            isset($donnets->Description) && !empty($donnee->Description) &&
+            isset($donnets->CouleurDeFond) && !empty($donnee->CouleurDeFond) &&
+            isset($donnets->CouleurDuTexte) && !empty($donnee->CouleurDuTexte)
         ){
 
             $logger->info("OK");
@@ -50,13 +49,12 @@ class ApiController extends AbstractController
                 $code =201;
 
             }
-            $calendar->setTitle($donnees->title);
-            $calendar->setStart(new DateTime($donnees->start));
-            $calendar->setDescription($donnees->description);
-                $calendar->setEnd((new DateTime($donnees->end)));
-
-            $calendar->setBackgroundColor($donnees->backgroundColor);
-            $calendar->setTextColor($donnees->textColor);
+            $calendar->setNomMatiere($donnees->NomMatiere);
+            $calendar->setDebut(new DateTime($donnees->Debut));
+            $calendar->setDescription($donnees->Description);
+            $calendar->setFin((new DateTime($donnees->Fin)));
+            $calendar->setCouleurDeFond($donnees->CouleurDeFond);
+            $calendar->setCouleurDuTexte($donnees->CouleurDuTexte);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($calendar);

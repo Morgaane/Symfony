@@ -20,107 +20,107 @@ class Calendar
     /**
      * @ORM\Column(type="string", length=100)
      */
-    private $title;
+    private $NomMatiere;
 
     /**
      * @ORM\Column(type="datetime",unique=true)
      */
-    private $start;
+    private $Debut;
 
     /**
      * @ORM\Column(type="datetime",unique=true)
      */
-    private $end;
+    private $Fin;
 
     /**
      * @ORM\Column(type="text")
      */
-    private $description;
+    private $Description;
 
     /**
      * @ORM\Column(type="string", length=7)
      */
-    private $background_color;
+    private $CouleurDeFond;
 
     /**
      * @ORM\Column(type="string", length=7)
      */
-    private $text_color;
+    private $CouleurDuTexte;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getTitle(): ?string
+    public function getNomMatiere(): ?string
     {
-        return $this->title;
+        return $this->NomMatiere;
     }
 
-    public function setTitle( $title): self
+    public function setNomMatiere( $NomMatiere): self
     {
-        $this->title = $title;
+        $this->title = $NomMatiere;
 
         return $this;
     }
 
-    public function getStart(): ?\DateTimeInterface
+    public function getDebut(): ?\DateTimeInterface
     {
-        return $this->start;
+        return $this->Debut;
     }
 
-    public function setStart(\DateTimeInterface $start): self
+    public function setDebut(\DateTimeInterface $Debut): self
     {
-        $this->start = $start;
+        $this->Debut = $Debut;
 
         return $this;
     }
 
-    public function getEnd(): ?\DateTimeInterface
+    public function getFin(): ?\DateTimeInterface
     {
-        return $this->end;
+        return $this->Fin;
     }
 
-    public function setEnd(\DateTimeInterface $end): self
+    public function setFin(\DateTimeInterface $Fin): self
     {
-        $this->end = $end;
+        $this->Fin = $Fin;
 
         return $this;
     }
 
     public function getDescription(): ?string
     {
-        return $this->description;
+        return $this->Description;
     }
 
-    public function setDescription(string $description): self
+    public function setDescription(string $Description): self
     {
-        $this->description = $description;
+        $this->Description = $Description;
 
         return $this;
     }
 
 
-    public function getBackgroundColor(): ?string
+    public function getCouleurDeFond(): ?string
     {
-        return $this->background_color;
+        return $this->CouleurDeFond;
     }
 
-    public function setBackgroundColor(string $background_color): self
+    public function setCouleurDeFond(string $CouleurDeFond): self
     {
-        $this->background_color = $background_color;
+        $this->CouleurDeFond = $CouleurDeFond;
 
         return $this;
     }
 
-    public function getTextColor(): ?string
+    public function getCouleurDuTexte(): ?string
     {
-        return $this->text_color;
+        return $this->CouleurDuTexte;
     }
 
-    public function setTextColor(string $text_color): self
+    public function setCouleurDuTexte(string $CouleurDuTexte): self
     {
-        $this->text_color = $text_color;
+        $this->CouleurDuTexte = $CouleurDuTexte;
 
         return $this;
     }
