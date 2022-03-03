@@ -8,12 +8,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use \Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\Persistence\ManagerRegistry;
-use Doctrine\ORM\Mapping as ORM;
-
-/**
- * @ORM\Entity(repositoryClass="GestionRepository")
- */
 
 class ApiController extends AbstractController
 {
@@ -26,49 +20,57 @@ class ApiController extends AbstractController
     }
 
     #[Route('/api/{id}/edit', name: 'api_event_edit', methods:'PUT')]
-    public function majEvent(?Gestion $gestion, Request $request,ManagerRegistry $doctrine): Response
+    public function majEvent(?Calendar $calendar, Request $request): Response
     {
-        //On récupère les données
+        $logger = $this->getContainer()->get('logger');
+
+        //On récupère les donnéez
         $donnees =json_decode($request->getContent());
+
         if(
-            isset($donnees->title) && !empty($donnees->title) &&
-            isset($donnees->start) && !empty($donnees->start) &&
-            isset($donnees->end) && !empty($donnees->end) &&
-            isset($donnees->backgroundColor) && !empty($donnees->backgroundColor) &&
-            isset($donnees->textColor) && !empty($donnees->textColor)
+            isset($donnets->title) && !empty($donnee->title) &&
+            isset($donnets->start) && !empty($donnee->start) &&
+            isset($donnets->description) && !empty($donnee->description) &&
+            isset($donnets->backgroundColor) && !empty($donnee->backgroundColor) &&
+            isset($donnets->borderColor) && !empty($donnee->borderColor) &&
+            isset($donnets->textColor) && !empty($donnee->textColor)
         ){
 
+            $logger->info("OK");
             //les données sont complètes
             $code = 200;
             //On vérifie si l'id existe
-            if(!$gestion){
+            if(!$calendar){
+                $logger->info("OK");
 
                 //On instance un rendez-vous
-                $gestion = new Gestion;
+                $calendar = new Calendar;
 
                 //On change le code
                 $code =201;
 
             }
-            $gestion->setTitle($donnees->title);
-            $gestion->setStart(new DateTime($donnees->start));
-            $gestion->setDescription($donnees->description);
-            $gestion->setEnd((new DateTime($donnees->end)));
-            $gestion->setBackgroundColor($donnees->backgroundColor);
-            $gestion->setTextColor($donnees->textColor);
+            $calendar->setTitle($donnees->title);
+            $calendar->setStart(new DateTime($donnees->start));
+            $calendar->setDescription($donnees->description);
+                $calendar->setEnd((new DateTime($donnees->end)));
 
-            $em = $doctrine->getManager();
-            $em->persist($gestion);
+            $calendar->setBackgroundColor($donnees->backgroundColor);
+            $calendar->setTextColor($donnees->textColor);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($calendar);
             $em->flush();
 
             return new Response('OK',$code);
         }else{
             //Les données sont incomplètes
+            $logger->error("NAN");
 
-            return new Response('Données incomplètes', 404);
+            return new Response('Données incomplète', 404);
         }
-        return $this->render('api/index.html.twig', [
-            'controller_name' => 'ApiController',
-        ]);
+//        return $this->render('api/index.html.twig', [
+//            'controller_name' => 'ApiController',
+//        ]);
     }
 }

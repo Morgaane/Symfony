@@ -12,6 +12,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Psr\Log\LoggerInterface;
+use DateTime;
+
 
 #[Route('/gestion')]
 class GestionController extends AbstractController
@@ -27,13 +29,39 @@ class GestionController extends AbstractController
     #[Route('/new', name: 'calendar_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $feries=['01/11/2017 00:00:00',
+            '25/12/2017 00:00:00',
+            '01/01/2018 00:00:00',
+            '02/04/2018 00:00:00',
+            '08/05/2018 00:00:00',
+            '10/05/2018 00:00:00',
+            '21/05/2018 00:00:00',
+            '14/07/2018 00:00:00',
+            '15/08/2018 00:00:00',
+        ];
         $calendar = new Calendar();
         $form = $this->createForm(GestionType::class, $calendar);
         $form->handleRequest($request);
 
+
+
         if ($form->isSubmitted() && $form->isValid()) {
+//            $donnees =json_decode($request->getContent());
+//            var_dump($donnees);
+//            if($donnees){
+//                foreach ($feries as $ferie){
+//                    $jourFerie=new DateTime($ferie);
+//                    if($calendar->getStart()->format("d-m-Y")==$jourFerie){
+//                        $this->addFlash('error',"L'évènement a été ajouté.");
+//                        return $this->redirectToRoute('calendar_new', [], Response::HTTP_SEE_OTHER);
+//
+//                    }
+//
+//                }
+//            }
+
             $entityManager->persist($calendar);
-//            $entityManager->flush();
+            $entityManager->flush();
 
             $this->addFlash('success',"L'évènement a été ajouté.");
             return $this->redirectToRoute('calendar_new', [], Response::HTTP_SEE_OTHER);

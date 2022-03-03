@@ -3,7 +3,7 @@
 {% block title %}Editer la matière{% endblock %}
 
 {% block body %}
-    <h1>Editer la matière</h1>
+    <h1>Editer la matière associé à l'intervenant {{ matiere.NomIntervenant }}</h1>
 
     {{ include('matiere/_form.html.twig', {'button_label': 'Update'}) }}
 

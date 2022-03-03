@@ -57,7 +57,7 @@ class Calendar
         return $this->title;
     }
 
-    public function setTitle(string $title): self
+    public function setTitle( $title): self
     {
         $this->title = $title;
 
