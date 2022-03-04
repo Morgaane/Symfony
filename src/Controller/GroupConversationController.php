@@ -123,7 +123,9 @@ class GroupConversationController extends AbstractController
      */
     public function delete(GroupConversation $groupConversation): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_USER');
+        if(!$this->isGranted('ROLE_USER') && !$this->isGranted('ROLE_ADMIN')){
+            throw $this->createAccessDeniedException('not allowed');
+        }
 
 
     }

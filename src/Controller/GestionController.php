@@ -23,6 +23,9 @@ class GestionController extends AbstractController
     #[Route('/', name: 'calendar_index', methods: ['GET'])]
     public function index(GestionRepository $calendarRepository): Response
     {
+        if(!$this->isGranted('ROLE_USER') && !$this->isGranted('ROLE_ADMIN')){
+            throw $this->createAccessDeniedException('not allowed');
+        }
         return $this->render('gestion/index.html.twig', [
             'calendars' => $calendarRepository->findAll(),
         ]);

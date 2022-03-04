@@ -18,10 +18,12 @@ class IntervenantController extends AbstractController
 
 
 
-    #[Route('/', name: 'intervenants',methods: ['GET'])]
+    #[Route('/', name: 'intervenant_index',methods: ['GET'])]
     public function index(UserRepository $user): Response
     {
-
+        if(!$this->isGranted('ROLE_USER') && !$this->isGranted('ROLE_ADMIN')){
+            throw $this->createAccessDeniedException('not allowed');
+        }
 
 
 
@@ -68,3 +70,4 @@ class IntervenantController extends AbstractController
 
 
 }
+

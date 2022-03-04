@@ -48,7 +48,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="array")
      */
-    private $roles = ['ROLE_USER'];
+    private $roles = ['ROLE_ADMIN'];
 
     /**
      * @ORM\OneToMany(targetEntity=Message::class, mappedBy="user", orphanRemoval=true, cascade={"persist"})

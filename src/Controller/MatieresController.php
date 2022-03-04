@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\MatiereForm;
+use App\Form\MatiereEditForm;
 use App\Entity\Matiere;
 use App\Entity\Intervenant;
 use App\Repository\IntervenantRepository;
@@ -32,6 +33,9 @@ class MatieresController extends AbstractController
     #[Route('/', name: 'matieres_index', methods: ['GET'])]
     public function index(MatiereRepository $matiereRepository): Response
     {
+        if(!$this->isGranted('ROLE_USER') && !$this->isGranted('ROLE_ADMIN')){
+            throw $this->createAccessDeniedException('not allowed');
+        }
         return $this->render('matiere/index.html.twig', [
             'matieres' => $matiereRepository->findAll(),
         ]);
@@ -101,7 +105,7 @@ class MatieresController extends AbstractController
     #[Route('/{id}/edit', name: 'matieres_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Matiere $matiere, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(MatiereForm::class, $matiere);
+        $form = $this->createForm(MatiereEditForm::class, $matiere);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

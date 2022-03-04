@@ -67,7 +67,9 @@ class MessageController extends AbstractController
      */
     public function browse(GroupConversation $groupConversation): Response {
 
-        $this->denyAccessUnlessGranted('ROLE_USER');
+        if(!$this->isGranted('ROLE_USER') && !$this->isGranted('ROLE_ADMIN')){
+            throw $this->createAccessDeniedException('not allowed');
+        }
 
         $messages = $this->messageRepository->findMessageByConversationId($groupConversation->getId());
 
