@@ -1,0 +1,40 @@
+    {% block stylesheets %}
+    <style>
+        #footer {
+            position:fixed;
+            right:10px;
+            bottom:0;
+            margin:10px;
+            padding:10px;
+
+        }
+        #deco {
+
+            height: 40px;
+            position: fixed;
+            bottom:10px;
+            left: 10px;
+        }
+        #create {
+
+            height: 40px;
+            position:fixed;
+            bottom:10px;
+            left: 10px;
+            top: 820px;
+
+
+
+        }
+    </style>
+    {% endblock %}
+    {% if app.user %}
+    <a class="nav-link" href="/" style="color: #DDDDDD">
+        <img id="footer" src="{{ asset("images/logochat.png")}}" alt="logo" width="5%">
+        {% if is_granted('ROLE_ADMIN') %}
+        <a  class="btn btn-primary" id="create" href="/register">Création Utilisateur</a>
+        {% endif %}
+        <a  class="btn btn-danger" id="deco" href="{{ path("app_logout") }}">Déconnexion</a>
+
+        {% endif %}
+    </a>

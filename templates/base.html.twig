@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <script defer src="/your-path-to-fontawesome/js/all.js"></script> <!--load all styles -->
+    <link href="/your-path-to-fontawesome/css/fontawesome.css" rel="stylesheet">
+    <link href="/your-path-to-fontawesome/css/brands.css" rel="stylesheet">
+    <link href="/your-path-to-fontawesome/css/solid.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css"
+          integrity="sha256-16PDMvytZTH9heHu9KBPjzrFTaoner60bnABykjNiM0=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="shortcut icon" href="{{"images/logo.ico"}}"/>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    {% block stylesheets %}
+        <style>
+            .nav li {
+                display: inline;
+                color: white;
+            }
+
+            .navbar-inverse .navbar-nav > li > a {
+                color: #ffffff;
+                font-family: Lato, serif;
+                font-size: 1.2em;
+                font-weight: 300;
+                /*padding: 30px 25px 20px 25px;*/
+            }
+
+            .navbar-inverse .navbar-nav li a:hover {
+                background-color: #444444;
+                transition: 0.7s all linear;
+                height: 100%;
+            }
+
+        </style>
+    {% endblock %}
+</head>
+<body>
+{% include 'base/nav.html.twig' %}
+<div class="card">
+    <div class="card-body">
+        {% block body %}{% endblock %}</div></div>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"
+        integrity="sha256-XOMgUu4lWKSn8CFoJoBoGd9Q/OET+xrfGYSo+AKpFhE=" crossorigin="anonymous"></script>
+{% block javascripts %}{% endblock %}
+
+{% include 'base/footer.html.twig' %}
+</body>
+</html>

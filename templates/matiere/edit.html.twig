@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editer la matière{% endblock %}
+
+{% block body %}
+    <h1>Editer la matière associé à l'intervenant {{ matiere.NomIntervenant }}</h1>
+
+    {{ include('matiere/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('matieres_index') }}">Retour à la liste</a>
+
+    {{ include('matiere/_delete_form.html.twig') }}
+{% endblock %}

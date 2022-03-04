@@ -1,0 +1,6 @@
+{{ form_start(form) }}
+
+    {{ form_widget(form) }}
+{#<link rel="stylesheet" href="{{ asset("bootstrap.css") }}"/>#}
+<button class="btn">{{ button_label|default('Sauvegarder') }}</button>
+{{ form_end(form) }}

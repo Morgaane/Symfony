@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créneau {{ calendar.title }}{% endblock %}
+
+{% block body %}
+    <h1>Récapitulatif du créneau</h1>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Matière</th>
+            <td>{{ calendar.title }}</td>
+        </tr>
+        <tr>
+            <th>Début</th>
+            <td>{{ calendar.start ? calendar.start|date('d-m-Y H:i:s') : '' }}</td>
+        </tr>
+        <tr>
+            <th>Fin</th>
+            <td>{{ calendar.end ? calendar.end|date('d-m-Y H:i:s') : '' }}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ calendar.description }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('calendar_index') }}">Retour</a>
+    {% if app.user %}
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('calendar_edit', {'id': calendar.id}) }}">Modifier</a>
+    {% endif %}
+    {% endif %}
+
+{% endblock %}

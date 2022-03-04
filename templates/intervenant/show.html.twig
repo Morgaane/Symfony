@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Intervenant{% endblock %}
+
+{% block body %}
+    <h1>Récapitulatif du créneau</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+
+                <th>Nom</th>
+                <td>{{ users.nom }}</td>
+
+            </tr>
+            <tr>
+                <th>Prénom</th>
+                <td>{{ users.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Identifiant</th>
+                <td>{{ users.username }}</td>
+            </tr>
+            <tr>
+                <th>Mail</th>
+                <td>{{ users.mail }}</td>
+            </tr>
+            <tr>
+                <th>Total des heures</th>
+                <td>{{ users.Totalheure }}</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <a href="{{ path('intervenants') }}">Retour</a>
+    {% if app.user %}
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('intervenant_edit', {'id': users.id}) }}">Modifier</a>
+    {% endif %}
+    {% endif %}
+
+{% endblock %}

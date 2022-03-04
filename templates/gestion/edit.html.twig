@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edition {{ calendar.title }} du {{ calendar.start|date('d-m-Y') }}{% endblock %}
+
+{% block body %}
+    <h1>Edition du créneau {{ calendar.title }} du {{ calendar.start|date('d-m-Y') }}</h1>
+
+    {{ include('gestion/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('calendar_index') }}">Retour à la liste</a>
+
+    {{ include('gestion/_delete_form.html.twig') }}
+{% endblock %}
